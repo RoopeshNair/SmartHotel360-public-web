@@ -17,9 +17,8 @@ steps:
     dockerFile: SmartHotel360.PublicWeb/Dockerfile
     useDefaultContext: false
     buildContext: SmartHotel360.PublicWeb
-    command: 'Build'
 - task: Docker@1
   inputs:
     azureSubscriptionEndpoint: RMPM
     azureContainerRegistry: smarthotel.azurecr.io
-    command: 'Push'
+    command: 'Push an image'
