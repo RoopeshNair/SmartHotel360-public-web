@@ -22,3 +22,4 @@ steps:
     azureContainerRegistry: '{"loginServer":"ronacr.azurecr.io", "id" : "/subscriptions/afc11291-9826-46be-b852-70349146ddf8/resourceGroups/ronaks/providers/Microsoft.ContainerRegistry/registries/ronacr"}'
     action: 'Push an image'
     imageName: '$(Build.Repository.Name):$(Build.BuildId)'
+    qualifyImageName: false
