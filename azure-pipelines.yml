@@ -1,0 +1,22 @@
+# Docker image
+# Build a Docker image to run, deploy, or push to a container registry.
+# Add steps that use Docker Compose, tag images, push to a registry, run an image, and more:
+# https://docs.microsoft.com/vsts/pipelines/languages/docker
+
+pool:
+  vmImage: 'xenon'
+variables:
+  imageName: 'your-container-image-name:$(build.buildId)'
+steps:
+#- script: docker build -f Dockerfile -t $(imageName) .
+#  displayName: 'docker build'
+- task: Docker@0
+  inputs:
+    dockerFile: SmartHotel360.PublicWeb/Dockerfile
+    defaultContext: false
+    context: SmartHotel360.PublicWeb
+- task: Docker@0
+  inputs:
+    azureSubscription: RMPM
+    azureContainerRegistry: '{"loginServer":"ronacr.azurecr.io", "id" : "/subscriptions/afc11291-9826-46be-b852-70349146ddf8/resourceGroups/ronaks/providers/Microsoft.ContainerRegistry/registries/ronacr"}'
+    action: 'Push an image'
