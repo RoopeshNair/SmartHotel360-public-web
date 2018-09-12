@@ -4,7 +4,7 @@
 # https://docs.microsoft.com/vsts/pipelines/languages/docker
 
 pool:
-  vmImage: 'Hosted-Linux-Preview'
+  vmImage: 'xenon'
 variables:
   imageName: 'your-container-image-name:$(build.buildId)'
 steps:
@@ -15,8 +15,11 @@ steps:
     dockerFile: SmartHotel360.PublicWeb/Dockerfile
     useDefaultContext: false
     buildContext: SmartHotel360.PublicWeb
+    imageName: '$(Build.Repository.Name):$(Build.BuildId)'
+    qualifyImageName: false
 - task: Docker@1
   inputs:
     azureSubscriptionEndpoint: RMPM
     azureContainerRegistry: ronacr.azurecr.io
     command: 'Push an image'
+    imageName: '$(Build.Repository.Name):$(Build.BuildId)'
