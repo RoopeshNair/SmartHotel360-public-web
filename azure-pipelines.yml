@@ -12,7 +12,7 @@ steps:
 #  displayName: 'docker build'
 - task: Docker@1
   inputs:
-    azureSubscriptionEndpoint: 'RMPM-New'
+    azureSubscriptionEndpoint: RMPM
     azureContainerRegistry: smarthotel.azurecr.io
     dockerFile: SmartHotel360.PublicWeb/Dockerfile
     useDefaultContext: false
@@ -20,6 +20,6 @@ steps:
     command: 'Build'
 - task: Docker@1
   inputs:
-    azureSubscriptionEndpoint: 'RMPM-New'
+    azureSubscriptionEndpoint: RMPM
     azureContainerRegistry: smarthotel.azurecr.io
     command: 'Push'
