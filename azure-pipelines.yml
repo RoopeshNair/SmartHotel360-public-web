@@ -19,7 +19,7 @@ steps:
     qualifyImageName: false
 - task: Docker@1
   inputs:
-    azureSubscriptionEndpoint: RMPM
+    azureSubscriptionEndpoint: RMPM-New
     azureContainerRegistry: smarthotel.azurecr.io
     command: 'Push an image'
     imageName: '$(Build.Repository.Name):$(Build.BuildId)'
