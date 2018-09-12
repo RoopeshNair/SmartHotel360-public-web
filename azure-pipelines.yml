@@ -10,16 +10,13 @@ variables:
 steps:
 #- script: docker build -f Dockerfile -t $(imageName) .
 #  displayName: 'docker build'
-- task: Docker@0
+- task: Docker@1
   inputs:
     dockerFile: SmartHotel360.PublicWeb/Dockerfile
-    defaultContext: false
-    context: SmartHotel360.PublicWeb
-    imageName: '$(Build.Repository.Name):$(Build.BuildId)'
-- task: Docker@0
+    useDefaultContext: false
+    buildContext: SmartHotel360.PublicWeb
+- task: Docker@1
   inputs:
-    azureSubscription: RMPM
-    azureContainerRegistry: '{"loginServer":"ronacr.azurecr.io", "id" : "/subscriptions/afc11291-9826-46be-b852-70349146ddf8/resourceGroups/ronaks/providers/Microsoft.ContainerRegistry/registries/ronacr"}'
-    action: 'Push an image'
-    imageName: '$(Build.Repository.Name):$(Build.BuildId)'
-    qualifyImageName: false
+    azureSubscriptionEndpoint: RMPM
+    azureContainerRegistry: ronacr.azurecr.io
+    command: 'Push an image'
