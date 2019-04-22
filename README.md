@@ -47,7 +47,7 @@ The file `appsettings.Development.json` contains the settings of the web site. B
 If you want to deploy this application to your own Azure subscription, see [this setup guide](./doc/demo-setup.md) for instructions. 
 
 # Demo Scripts
-There is a detailed step-by-step demo script in the [demoscripts](./demoscripts/) folder of this repo that you can use in your own presentations. In order to perform the demos, you will need to deploy the application resources to Azure first. See [this setup guide](./doc/demo-setup.md) on how to do that. 
+There is a detailed step-by-step demo script in the [demoscripts](./demoscripts/) folder of this repo that you can use in your own presentations. In order to perform the demos, you will need to deploy the application resources to Azure first. See [this setup guide](./doc/demo-setup.md) on how to do that. Supports multi-stage Docker compose.
 
 # Contributing
 
