@@ -17,7 +17,7 @@ stages:
     steps:
     - script: echo my first Build job
 
-- stage: deploy
+- stage: test
   jobs:
   - deployment: DeployWeb
     displayName: deploy Web App
@@ -28,4 +28,17 @@ stages:
       runOnce:
         deploy:                     # records deployments against ‘smarthotel-dev’
           steps:
-          - script: echo my first deployment
+          - script: echo deploy to test
+
+- stage: preproduction
+  jobs:
+  - deployment: DeployWeb
+    displayName: deploy Web App
+    pool:
+      vmImage: 'Ubuntu-16.04'
+    environment: 'smarthotel-dev'   # creates an environment if it doesn’t exist
+    strategy: 
+      runOnce:
+        deploy:                     # records deployments against ‘smarthotel-dev’
+          steps:
+          - script: echo deploy to preprod
