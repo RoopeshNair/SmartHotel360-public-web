@@ -29,6 +29,7 @@ stages:
         deploy:                     # records deployments against ‘smarthotel-dev’
           steps:
           - script: echo deploy to test
+          - script: echo run tests
 
 - stage: preproduction
   jobs:
@@ -42,3 +43,4 @@ stages:
         deploy:                     # records deployments against ‘smarthotel-dev’
           steps:
           - script: echo deploy to preprod
+          - script: echo run tests
