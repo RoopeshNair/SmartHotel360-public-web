@@ -21,7 +21,7 @@ stages:
   dependsOn: Build
   jobs:
   - deployment: DeployWeb
-    displayName: deploy Web App
+    displayName: deploy and test
     pool:
       vmImage: 'Ubuntu-16.04'
     environment: 'smarthotel-test'   # creates an environment if it doesn’t exist
@@ -36,7 +36,7 @@ stages:
   dependsOn: Build
   jobs:
   - deployment: DeployWeb
-    displayName: deploy Web App
+    displayName: run security tests
     pool:
       vmImage: 'Ubuntu-16.04'
     environment: 'smarthotel-test'   # creates an environment if it doesn’t exist
