@@ -16,10 +16,9 @@ stages:
     continueOnError: true
     steps:
     - script: echo my first Build job
-    - use: node
-      version: '8'
 
 - stage: test
+  dependsOn: Build
   jobs:
   - deployment: DeployWeb
     displayName: deploy Web App
@@ -33,7 +32,25 @@ stages:
           - script: echo deploy to test
           - script: echo run tests
 
-- stage: preproduction
+- stage: SecurityTests
+  dependsOn: Build
+  jobs:
+  - deployment: DeployWeb
+    displayName: deploy Web App
+    pool:
+      vmImage: 'Ubuntu-16.04'
+    environment: 'smarthotel-dev'   # creates an environment if it doesn’t exist
+    strategy: 
+      runOnce:
+        deploy:                     # records deployments against ‘smarthotel-dev’
+          steps:
+          - script: echo deploy to test
+          - script: echo run tests
+
+- stage: production
+  dependsOn: 
+  - test
+  - SecurityTests
   jobs:
   - deployment: DeployWeb
     displayName: deploy Web App
