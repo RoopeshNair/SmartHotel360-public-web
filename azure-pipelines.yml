@@ -16,6 +16,8 @@ stages:
     continueOnError: true
     steps:
     - script: echo my first Build job
+    - use: node
+      version: '8'
 
 - stage: test
   jobs:
