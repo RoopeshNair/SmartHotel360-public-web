@@ -24,7 +24,7 @@ stages:
     displayName: deploy Web App
     pool:
       vmImage: 'Ubuntu-16.04'
-    environment: 'smarthotel-dev'   # creates an environment if it doesn’t exist
+    environment: 'smarthotel-test'   # creates an environment if it doesn’t exist
     strategy: 
       runOnce:
         deploy:                     # records deployments against ‘smarthotel-dev’
@@ -39,7 +39,7 @@ stages:
     displayName: deploy Web App
     pool:
       vmImage: 'Ubuntu-16.04'
-    environment: 'smarthotel-dev'   # creates an environment if it doesn’t exist
+    environment: 'smarthotel-test'   # creates an environment if it doesn’t exist
     strategy: 
       runOnce:
         deploy:                     # records deployments against ‘smarthotel-dev’
@@ -56,7 +56,7 @@ stages:
     displayName: deploy Web App
     pool:
       vmImage: 'Ubuntu-16.04'
-    environment: 'smarthotel-dev'   # creates an environment if it doesn’t exist
+    environment: 'smarthotel-prod'   # creates an environment if it doesn’t exist
     strategy: 
       runOnce:
         deploy:                     # records deployments against ‘smarthotel-dev’
