@@ -9,13 +9,22 @@ trigger:
 stages:
 - stage: Build
   jobs:
-  - job: Build
+  - job: Build1
     displayName: My First Build
     pool:
       vmImage: 'Ubuntu-16.04'
     continueOnError: true
     steps:
     - script: echo my first Build job
+    - script: echo run tests
+  - job: Build2
+    displayName: My second build
+    pool:
+      vmImage: 'Ubuntu-16.04'
+    continueOnError: true
+    steps:
+    - script: echo my second Build job
+    - script: echo run tests
 
 - stage: test
   dependsOn: Build
