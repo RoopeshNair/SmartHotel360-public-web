@@ -36,7 +36,7 @@ stages:
     displayName: deploy payments
     pool:
       vmImage: 'Ubuntu-16.04'
-    environment: 'smarthotel-prod.payments'   # creates an environment if it doesn’t exist
+    environment: 'smarthotel-dev.payments'   # creates an environment if it doesn’t exist
     strategy: 
       runOnce:
         deploy:                     # records deployments against ‘smarthotel-dev’
@@ -48,7 +48,7 @@ stages:
     displayName: deploy notifications
     pool:
       vmImage: 'Ubuntu-16.04'
-    environment: 'smarthotel-prod.notifications'   # creates an environment if it doesn’t exist
+    environment: 'smarthotel-dev.notifications'   # creates an environment if it doesn’t exist
     strategy: 
       runOnce:
         deploy:                     # records deployments against ‘smarthotel-dev’
@@ -60,7 +60,7 @@ stages:
     displayName: deploy configurations
     pool:
       vmImage: 'Ubuntu-16.04'
-    environment: 'smarthotel-prod.configurations'   # creates an environment if it doesn’t exist
+    environment: 'smarthotel-dev.configurations'   # creates an environment if it doesn’t exist
     strategy: 
       runOnce:
         deploy:                     # records deployments against ‘smarthotel-dev’
