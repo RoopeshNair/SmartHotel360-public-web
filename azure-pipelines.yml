@@ -20,16 +20,52 @@ stages:
 - stage: test
   dependsOn: Build
   jobs:
-  - deployment: DeployWeb
-    displayName: deploy&test
+  - deployment: DeployBookings
+    displayName: deploy bookings
     pool:
       vmImage: 'Ubuntu-16.04'
-    environment: 'smarthotel-test.bookings'   # creates an environment if it doesn’t exist
+    environment: 'smarthotel-dev.bookings'   # creates an environment if it doesn’t exist
     strategy: 
       runOnce:
         deploy:                     # records deployments against ‘smarthotel-dev’
           steps:
           - script: echo deploy to test
+          - script: echo run tests
+
+  - deployment: DeployPayments
+    displayName: deploy payments
+    pool:
+      vmImage: 'Ubuntu-16.04'
+    environment: 'smarthotel-prod.payments'   # creates an environment if it doesn’t exist
+    strategy: 
+      runOnce:
+        deploy:                     # records deployments against ‘smarthotel-dev’
+          steps:
+          - script: echo deploy to preprod
+          - script: echo run tests
+
+  - deployment: DeployNotifications
+    displayName: deploy notifications
+    pool:
+      vmImage: 'Ubuntu-16.04'
+    environment: 'smarthotel-prod.notifications'   # creates an environment if it doesn’t exist
+    strategy: 
+      runOnce:
+        deploy:                     # records deployments against ‘smarthotel-dev’
+          steps:
+          - script: echo deploy to preprod
+          - script: echo run tests
+
+  - deployment: DeployNotifications
+    displayName: deploy configurations
+    pool:
+      vmImage: 'Ubuntu-16.04'
+    environment: 'smarthotel-prod.configurations'   # creates an environment if it doesn’t exist
+    strategy: 
+      runOnce:
+        deploy:                     # records deployments against ‘smarthotel-dev’
+          steps:
+          - script: echo deploy to preprod
           - script: echo run tests
 
 - stage: SecurityTests
