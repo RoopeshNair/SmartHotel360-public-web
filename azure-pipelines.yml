@@ -56,7 +56,7 @@ stages:
           - script: echo deploy to preprod
           - script: echo run tests
 
-  - deployment: DeployNotifications
+  - deployment: DeployConfigurations
     displayName: deploy configurations
     pool:
       vmImage: 'Ubuntu-16.04'
