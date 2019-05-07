@@ -60,7 +60,7 @@ stages:
     displayName: deploy configurations
     pool:
       vmImage: 'Ubuntu-16.04'
-    environment: 'smarthotel-dev.configurations'   # creates an environment if it doesn’t exist
+    environment: 'smarthotel-dev'   # creates an environment if it doesn’t exist
     strategy: 
       runOnce:
         deploy:                     # records deployments against ‘smarthotel-dev’
