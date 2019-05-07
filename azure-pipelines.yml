@@ -24,7 +24,7 @@ stages:
     displayName: deploy bookings
     pool:
       vmImage: 'Ubuntu-16.04'
-    environment: 'smarthotel-dev.bookings'   # creates an environment if it doesn’t exist
+    environment: 'smarthotel-dev'   # creates an environment if it doesn’t exist
     strategy: 
       runOnce:
         deploy:                     # records deployments against ‘smarthotel-dev’
@@ -75,7 +75,7 @@ stages:
     displayName: runSecurityTests
     pool:
       vmImage: 'Ubuntu-16.04'
-    environment: 'smarthotel-test.bookings'   # creates an environment if it doesn’t exist
+    environment: 'smarthotel-test'   # creates an environment if it doesn’t exist
     strategy: 
       runOnce:
         deploy:                     # records deployments against ‘smarthotel-dev’
