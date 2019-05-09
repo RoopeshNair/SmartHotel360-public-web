@@ -15,7 +15,7 @@ stages:
 - stage: Build
   jobs:
   - job: Build
-    displayName: My First Build
+    displayName: My First Build on $(poolName)
     pool:
       vmImage: '$(poolName)'
     continueOnError: true
