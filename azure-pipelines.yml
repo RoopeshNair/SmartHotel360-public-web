@@ -8,7 +8,7 @@ trigger:
 
 variables:
   AgentOS: Ubuntu
-  version: 16.04
+  version: '16.04'
   poolName: $(AgentOS)-$(version)
 stages:
 - stage: Build
@@ -16,7 +16,7 @@ stages:
   - job: Build
     displayName: My First Build
     pool:
-      vmImage: '$(AgentOS)-$(version)'
+      vmImage: '$(poolName)'
     continueOnError: true
     steps:
     - script: echo my first Build job
@@ -27,7 +27,7 @@ stages:
   jobs:
   - deployment: DeployWeb
     pool:
-      vmImage: '$(poolName)'
+      vmImage: 'Ubuntu-16.04'
     displayName: deploy Web App
     environment: 'smarthotel-prod'   # creates an environment if it doesn’t exist
     strategy: 
