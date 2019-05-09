@@ -20,7 +20,7 @@ stages:
       vmImage: '$(poolName)'
     continueOnError: true
     steps:
-    - script: echo my first Build job
+    - script: echo my first Build job on $(poolName)
 
 
 - stage: production
@@ -35,5 +35,5 @@ stages:
       runOnce:
         deploy:                     # records deployments against ‘smarthotel-dev’
           steps:
-          - script: echo deploy to preprod
+          - script: echo deploy to preprod on $(poolName)
           - script: echo run tests
