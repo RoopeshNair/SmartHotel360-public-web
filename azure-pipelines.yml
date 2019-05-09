@@ -9,14 +9,14 @@ trigger:
 variables:
   AgentOS: Ubuntu
   version: 16.04
-  poolName: $(AgentOS)-$(versions)
+  poolName: $(AgentOS)-$(version)
 stages:
 - stage: Build
   jobs:
   - job: Build
     displayName: My First Build
     pool:
-      vmImage: '$(AgentOS)-$(versions)'
+      vmImage: '$(AgentOS)-$(version)'
     continueOnError: true
     steps:
     - script: echo my first Build job
