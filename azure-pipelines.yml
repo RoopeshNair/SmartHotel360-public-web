@@ -6,92 +6,29 @@
 trigger:
 - master
 
+variables:
+  AgentOS: Ubuntu
+  version: 16.04
+  poolName: $(AgentOS)-$(versions)
 stages:
 - stage: Build
   jobs:
   - job: Build
     displayName: My First Build
     pool:
-      vmImage: 'Ubuntu-16.04'
+      vmImage: '$(AgentOS)-$(versions)'
     continueOnError: true
     steps:
     - script: echo my first Build job
 
-- stage: test
-  dependsOn: Build
-  jobs:
-  - deployment: DeployBookings
-    displayName: deploy bookings
-    pool:
-      vmImage: 'Ubuntu-16.04'
-    environment: 'smarthotel-dev'   # creates an environment if it doesn’t exist
-    strategy: 
-      runOnce:
-        deploy:                     # records deployments against ‘smarthotel-dev’
-          steps:
-          - script: echo deploy to test
-          - script: echo run tests
-
-  - deployment: DeployPayments
-    displayName: deploy payments
-    pool:
-      vmImage: 'Ubuntu-16.04'
-    environment: 'smarthotel-dev'   # creates an environment if it doesn’t exist
-    strategy: 
-      runOnce:
-        deploy:                     # records deployments against ‘smarthotel-dev’
-          steps:
-          - script: echo deploy to preprod
-          - script: echo run tests
-
-  - deployment: DeployNotifications
-    displayName: deploy notifications
-    pool:
-      vmImage: 'Ubuntu-16.04'
-    environment: 'smarthotel-dev'   # creates an environment if it doesn’t exist
-    strategy: 
-      runOnce:
-        deploy:                     # records deployments against ‘smarthotel-dev’
-          steps:
-          - script: echo deploy to preprod
-          - script: echo run tests
-
-  - deployment: DeployConfigurations
-    displayName: deploy configurations
-    pool:
-      vmImage: 'Ubuntu-16.04'
-    environment: 'smarthotel-dev'   # creates an environment if it doesn’t exist
-    strategy: 
-      runOnce:
-        deploy:                     # records deployments against ‘smarthotel-dev’
-          steps:
-          - script: echo deploy to preprod
-          - script: echo run tests
-
-- stage: SecurityTests
-  dependsOn: Build
-  jobs:
-  - deployment: DeployWeb
-    displayName: runSecurityTests
-    pool:
-      vmImage: 'Ubuntu-16.04'
-    environment: 'smarthotel-test'   # creates an environment if it doesn’t exist
-    strategy: 
-      runOnce:
-        deploy:                     # records deployments against ‘smarthotel-dev’
-          steps:
-          - script: echo deploy to test
-          - script: echo run tests
 
 - stage: production
-  dependsOn: 
-  - test
-  - SecurityTests
+  dependsOn: Build
   jobs:
   - deployment: DeployWeb
-    displayName: deploy Web App
     pool:
-      vmImage: 'Ubuntu-16.04'
+      vmImage: '$(poolName)'
+    displayName: deploy Web App
     environment: 'smarthotel-prod'   # creates an environment if it doesn’t exist
     strategy: 
       runOnce:
